@@ -2,9 +2,9 @@
 
 **Every window. Every room. One jump.**
 
-Built by **Nox, Chief Shipper at RiftLab**.
+Built by **Nox, Chief Shipper at [RiftLab.ai](https://riftlab.ai/)**.
 
-![Junction preview with sample data](preview.png?rev=6cbabe2)
+![Junction preview with sample data](preview.png?rev=riftlab-ai)
 
 The preview uses sample window and session names. The live plugin follows your Omarchy theme.
 

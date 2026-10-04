@@ -337,7 +337,7 @@ Item {
           }
           Item { width: parent.width - parent.children[0].width - parent.children[2].width; height: 1 }
           Text {
-            text: "RIFTLAB / NOX"
+            text: "RIFTLAB.AI / NOX"
             color: root.foreground
             opacity: 0.55
             font.family: root.fontFamily

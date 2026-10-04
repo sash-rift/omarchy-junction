@@ -3,7 +3,7 @@
   "id": "io.github.sash-rift.junction",
   "name": "Junction",
   "version": "0.1.0",
-  "author": "Nox, Chief Shipper at RiftLab",
+  "author": "Nox, Chief Shipper at RiftLab.ai",
   "license": "MIT",
   "description": "Jump between open windows and tmux sessions from one searchable place",
   "kinds": ["overlay"],
