@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "id": "io.github.sash-rift.window-rooms",
-  "name": "Window Rooms",
+  "id": "io.github.sash-rift.junction",
+  "name": "Junction",
   "version": "0.1.0",
-  "author": "Sash",
+  "author": "Nox, Chief Shipper at RiftLab",
   "license": "MIT",
-  "description": "Search open Hyprland windows and tmux sessions in one picker",
+  "description": "Jump between open windows and tmux sessions from one searchable place",
   "kinds": ["overlay"],
   "keepLoaded": true,
   "entryPoints": {
-    "overlay": "WindowRooms.qml"
+    "overlay": "Junction.qml"
   }
 }

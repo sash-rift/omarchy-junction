@@ -15,7 +15,7 @@ Item {
   property string filterText: ""
   property int selectedIndex: 0
   property var allRows: []
-  readonly property string pluginId: "io.github.sash-rift.window-rooms"
+  readonly property string pluginId: "io.github.sash-rift.junction"
   readonly property string backendPath: Quickshell.env("HOME") + "/.config/omarchy/plugins/" + pluginId + "/backend.py"
 
   property color background: Color.menu.background
@@ -26,6 +26,7 @@ Item {
   property var borderSpec: Border.surfaceSpec("menu", "border", Color.menu.border, Math.max(1, Style.space(2)))
   property string fontFamily: Style.font.menuFamily
   property int padding: Style.spacing.panelPadding
+  onForegroundChanged: brandCanvas.requestPaint()
 
   function open(payloadJson) {
     opened = true
@@ -54,7 +55,7 @@ Item {
       allRows = Array.isArray(parsed) ? parsed : []
     } catch (error) {
       allRows = []
-      console.warn("Window Rooms: could not parse backend output:", error)
+      console.warn("Junction: could not parse backend output:", error)
     }
     rebuild()
   }
@@ -101,7 +102,7 @@ Item {
     visible: root.opened
     anchors { top: true; bottom: true; left: true; right: true }
     color: "transparent"
-    WlrLayershell.namespace: "window-rooms"
+    WlrLayershell.namespace: "junction"
     WlrLayershell.layer: WlrLayer.Overlay
     WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
     exclusionMode: ExclusionMode.Ignore
@@ -162,22 +163,97 @@ Item {
         anchors.leftMargin: card.contentLeftInset
         spacing: Style.spacing.md
 
-        Text {
+        Row {
+          id: brandHeader
           width: parent.width
-          text: root.filterText || "Search windows and tmux rooms…"
-          color: root.foreground
-          opacity: root.filterText ? 1 : 0.6
-          font.family: root.fontFamily
-          font.pixelSize: Style.font.heading
-          elide: Text.ElideRight
+          height: Style.space(46)
+          spacing: Style.spacing.md
+
+          Rectangle {
+            width: brandHeader.height
+            height: brandHeader.height
+            radius: Style.cornerRadius
+            color: "transparent"
+            border.color: Color.menu.border
+            border.width: 1
+
+            Canvas {
+              id: brandCanvas
+              anchors.centerIn: parent
+              width: parent.width - Style.space(14)
+              height: width
+              onPaint: {
+                var ctx = getContext("2d")
+                ctx.clearRect(0, 0, width, height)
+                ctx.strokeStyle = root.foreground
+                ctx.fillStyle = root.foreground
+                ctx.lineWidth = Math.max(2, width / 13)
+                ctx.lineCap = "round"
+                ctx.lineJoin = "round"
+                ctx.beginPath()
+                ctx.moveTo(width * 0.12, height * 0.16)
+                ctx.lineTo(width * 0.5, height * 0.5)
+                ctx.lineTo(width * 0.88, height * 0.5)
+                ctx.moveTo(width * 0.12, height * 0.84)
+                ctx.lineTo(width * 0.5, height * 0.5)
+                ctx.moveTo(width * 0.5, height * 0.12)
+                ctx.lineTo(width * 0.5, height * 0.5)
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.arc(width * 0.5, height * 0.5, width * 0.1, 0, Math.PI * 2)
+                ctx.fill()
+              }
+            }
+          }
+
+          Column {
+            anchors.verticalCenter: parent.verticalCenter
+            spacing: Style.space(2)
+            Text {
+              text: "Junction"
+              color: root.foreground
+              font.family: root.fontFamily
+              font.pixelSize: Style.font.heading
+              font.bold: true
+            }
+            Text {
+              text: "WINDOWS  /  ROOMS"
+              color: root.foreground
+              opacity: 0.55
+              font.family: root.fontFamily
+              font.pixelSize: Style.font.caption
+              font.letterSpacing: 1.2
+            }
+          }
         }
 
-        Rectangle { width: parent.width; height: 1; color: Color.menu.border }
+        Rectangle {
+          id: searchBox
+          width: parent.width
+          height: Style.space(44)
+          radius: Style.cornerRadius
+          color: "transparent"
+          border.color: Color.menu.border
+          border.width: 1
+
+          Text {
+            anchors.fill: parent
+            anchors.leftMargin: Style.spacing.md
+            anchors.rightMargin: Style.spacing.md
+            verticalAlignment: Text.AlignVCenter
+            text: root.filterText || "Type to jump anywhere…"
+            color: root.foreground
+            opacity: root.filterText ? 1 : 0.58
+            font.family: root.fontFamily
+            font.pixelSize: Style.font.body
+            elide: Text.ElideRight
+          }
+        }
 
         ListView {
           id: results
           width: parent.width
-          height: parent.height - Style.font.heading - Style.spacing.md * 2 - 1
+          height: parent.height - brandHeader.height - searchBox.height - footer.height - Style.spacing.md * 3
           model: visibleRows
           clip: true
           spacing: Style.space(3)
@@ -245,6 +321,29 @@ Item {
           color: root.foreground
           opacity: 0.6
           font.family: root.fontFamily
+        }
+
+        Row {
+          id: footer
+          width: parent.width
+          height: Style.space(24)
+          Text {
+            text: "↑↓ MOVE     ↵ JUMP     ESC CLOSE"
+            color: root.foreground
+            opacity: 0.55
+            font.family: root.fontFamily
+            font.pixelSize: Style.font.caption
+            font.letterSpacing: 0.5
+          }
+          Item { width: parent.width - parent.children[0].width - parent.children[2].width; height: 1 }
+          Text {
+            text: "RIFTLAB / NOX"
+            color: root.foreground
+            opacity: 0.55
+            font.family: root.fontFamily
+            font.pixelSize: Style.font.caption
+            font.letterSpacing: 0.5
+          }
         }
       }
     }

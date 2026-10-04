@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Window Rooms: Hyprland/tmux discovery and activation for the shell overlay."""
+"""Junction: Hyprland/tmux discovery and activation for the shell overlay."""
 
 import argparse
 import json
@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 
-CONFIG = Path.home() / ".config/omarchy/window-rooms.json"
+CONFIG = Path.home() / ".config/omarchy/junction.json"
 ADDRESS = re.compile(r"0x[0-9a-fA-F]+\Z")
 
 
