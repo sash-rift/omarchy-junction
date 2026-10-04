@@ -75,6 +75,12 @@ class BackendTests(unittest.TestCase):
             self.assertEqual(backend.activate("room", "gone"), 1)
             command.assert_not_called()
 
+    def test_custom_socket_is_passed_to_tmux(self):
+        with patch.object(backend, "configuration", return_value={"tmuxSocket": "alternate"}), \
+             patch.object(backend, "run", return_value=subprocess.CompletedProcess([], 0, "", "")) as command:
+            backend.tmux("list-sessions")
+        command.assert_called_once_with("tmux", "-L", "alternate", "list-sessions")
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -4,6 +4,7 @@
   "name": "Window Rooms",
   "version": "0.1.0",
   "author": "Sash",
+  "license": "MIT",
   "description": "Search open Hyprland windows and tmux sessions in one picker",
   "kinds": ["overlay"],
   "keepLoaded": true,
