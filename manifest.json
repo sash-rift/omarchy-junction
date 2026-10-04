@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.sash-rift.window-rooms",
+  "name": "Window Rooms",
+  "version": "0.1.0",
+  "author": "Sash",
+  "description": "Search open Hyprland windows and tmux sessions in one picker",
+  "kinds": ["overlay"],
+  "keepLoaded": true,
+  "entryPoints": {
+    "overlay": "WindowRooms.qml"
+  }
+}
