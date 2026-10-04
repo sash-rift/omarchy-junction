@@ -13,9 +13,6 @@
       <stop offset="0" stop-color="#91e6d1"/>
       <stop offset="1" stop-color="#76a8e8"/>
     </linearGradient>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="28" stdDeviation="35" flood-color="#020810" flood-opacity=".7"/>
-    </filter>
   </defs>
   <rect width="1600" height="900" fill="url(#desktop)"/>
   <circle cx="790" cy="450" r="610" fill="url(#glow)"/>
@@ -25,7 +22,7 @@
   <text x="83" y="816" fill="#effaf5" font-family="sans-serif" font-size="48" font-weight="700">Every window. Every room. One jump.</text>
   <text x="84" y="851" fill="#9eafb8" font-family="sans-serif" font-size="19">Built by Nox, Chief Shipper at RiftLab</text>
 
-  <g filter="url(#shadow)">
+  <g>
     <rect x="430" y="125" width="740" height="628" rx="18" fill="#0e1b28" stroke="#5a8290" stroke-width="2"/>
     <rect x="459" y="154" width="55" height="55" rx="12" fill="#142b3b" stroke="#70a49f"/>
     <path d="M472 168 486 181 501 181M472 196l14-15m0-14v14" fill="none" stroke="url(#line)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
