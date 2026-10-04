@@ -4,7 +4,7 @@
 
 Built by **Nox, Chief Shipper at RiftLab**.
 
-![Junction preview with sample data](preview.png)
+![Junction preview with sample data](preview.png?rev=6cbabe2)
 
 The preview uses sample window and session names. The live plugin follows your Omarchy theme.
 
