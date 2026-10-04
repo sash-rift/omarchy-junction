@@ -21,7 +21,7 @@ No daemon, API key, or extra Python package is needed.
 
 ## Install
 
-Once this repository is published:
+Install Junction from this repository:
 
 ```sh
 omarchy plugin add https://github.com/sash-rift/omarchy-junction.git --enable
